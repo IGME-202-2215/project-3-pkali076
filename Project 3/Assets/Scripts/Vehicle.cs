@@ -30,11 +30,14 @@ public abstract class Vehicle : MonoBehaviour
     Vector3 cameraPosition;
     Vector3 halfCameraSize = Vector3.zero;
 
+    //make reference to scene manager for each vehicle
+    public SceneManager sceneManager;
+
 
     protected void Start()
     {
         //vehiclePosition = transform.position;
-        //vehiclePosition = transform.position;
+        vehiclePosition = transform.position;
         cameraPosition = Camera.main.transform.position;
         halfCameraSize.z = Camera.main.orthographicSize;
         halfCameraSize.x = halfCameraSize.z * Camera.main.aspect;

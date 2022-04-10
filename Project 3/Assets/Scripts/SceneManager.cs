@@ -16,7 +16,11 @@ public class SceneManager : MonoBehaviour
     [SerializeField]
     Transform worldTransform;
     Vector3 worldSize = Vector3.zero;
-  //  Bounds worldBounds;
+    Bounds worldBounds;
+
+
+    //vehicle have reference to scene manager
+    //scene manager is parent of giving information in world to each vehicle
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +33,20 @@ public class SceneManager : MonoBehaviour
         humans.Add(Instantiate(humanPrefab).GetComponent<Human>());
         zombies.Add(Instantiate(zombiePrefab).GetComponent<Zombie>());
 
-      //  humans[0].objectHBounds = worldBounds;
-        humans[0].enemyZombie = zombies[0];
 
-       // zombies[0].objectZBounds = worldBounds;
-        zombies[0].humanFood = humans[0];
+        //Instantiate(prefab, new Vector3(i * 2.0F, 0, 0), Quaternion.identity);
+
+        //defaults are 0,0,0 when instantiated.
+        //overloads to give default starting location (or random) and rotation
+        //quaternion.identity to have rotation that is 0, 0, 0
+
+        //  humans[0].objectHBounds = worldBounds;
+        humans[0].sceneManager = this; // zombies[0];
+
+        // zombies[0].objectZBounds = worldBounds;
+        zombies[0].sceneManager = this;
+
+        //both zombies and humans have access to public variables from sceneManager
     }
 
     // Update is called once per frame
