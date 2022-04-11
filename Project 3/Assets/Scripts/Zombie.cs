@@ -29,8 +29,8 @@ public class Zombie : Vehicle
         Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Destroy(other.gameObject);
-    }
+   // void OnTriggerEnter2D(Collider2D other)
+   // {
+  //      Destroy(other.gameObject);
+   // }
 }

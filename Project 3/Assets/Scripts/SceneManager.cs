@@ -31,7 +31,7 @@ public class SceneManager : MonoBehaviour
       // worldBounds = new Bounds(worldTransform.position, worldTransform.localScale * 10f);
 
         
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < 6; i++)
         {
             // Instantiate((zombiePrefab).GetComponent<Zombie>(), new Vector3(i * 3.0F, 0, i), Quaternion.identity);
             zombies.Add(Instantiate((zombiePrefab).GetComponent<Zombie>(), new Vector3(Random.Range(-20f, 20f), 0, Random.Range(-20f, 20f)), Quaternion.identity));
