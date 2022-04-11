@@ -21,9 +21,15 @@ public class Human : Vehicle
 
         ApplyForce(ultimateForce);
     }
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.magenta;
-    //   // Gizmos.DrawWireCube(objectHTransform.position, objectHBounds.center);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Destroy(other.gameObject);
+    }
+
+
 }
