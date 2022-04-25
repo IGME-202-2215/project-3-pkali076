@@ -16,7 +16,7 @@ public class SceneManager : MonoBehaviour
     [SerializeField]
     Transform worldTransform;
     Vector3 worldSize = Vector3.zero;
-    Bounds worldBounds;
+   // Bounds worldBounds;
 
 
     //vehicle have reference to scene manager
@@ -27,23 +27,29 @@ public class SceneManager : MonoBehaviour
     {
         worldSize = worldTransform.localScale * 10f;
 
-        //worldBounds = new Bounds(worldTransform.position, worldTransform.localScale * 10f);
-       // worldBounds = new Bounds(worldTransform.position, worldTransform.localScale * 10f);
+      //  worldBounds = new Bounds(worldTransform.position, worldTransform.localScale * 10f);
+      // worldBounds = new Bounds(worldTransform.position, worldTransform.localScale * 10f);
 
-        humans.Add(Instantiate(humanPrefab).GetComponent<Human>());
-        zombies.Add(Instantiate(zombiePrefab).GetComponent<Zombie>());
+        
+        for(int i = 0; i < 6; i++)
+        {
+            // Instantiate((zombiePrefab).GetComponent<Zombie>(), new Vector3(i * 3.0F, 0, i), Quaternion.identity);
+            zombies.Add(Instantiate((zombiePrefab).GetComponent<Zombie>(), new Vector3(Random.Range(-20f, 20f), 0, Random.Range(-20f, 20f)), Quaternion.identity));
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            //Instantiate((humanPrefab).GetComponent<Human>(), new Vector3(i * 6.0F, 0, i * -5.0f), Quaternion.identity);
+            
+            humans.Add(Instantiate((humanPrefab).GetComponent<Human>(), new Vector3(Random.Range(-20f, 20f), 0, Random.Range(-20f, 20f)), Quaternion.identity));
+        }
 
 
         //Instantiate(prefab, new Vector3(i * 2.0F, 0, 0), Quaternion.identity);
+        
+       // humans[0].worldBounds = worldBounds;
+        humans[0].sceneManager = this;
 
-        //defaults are 0,0,0 when instantiated.
-        //overloads to give default starting location (or random) and rotation
-        //quaternion.identity to have rotation that is 0, 0, 0
-
-        //  humans[0].objectHBounds = worldBounds;
-        humans[0].sceneManager = this; // zombies[0];
-
-        // zombies[0].objectZBounds = worldBounds;
+        // zombies[0].worldBounds = worldBounds;
         zombies[0].sceneManager = this;
 
         //both zombies and humans have access to public variables from sceneManager
