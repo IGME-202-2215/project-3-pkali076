@@ -19,7 +19,7 @@ public abstract class Vehicle : MonoBehaviour
     [Min(0.001f)]
     private float mass = 1;
 
-   // public Bounds worldBounds;
+   // Bounds worldBounds;
     public float Mass => mass;
 
     public float maxSpeed = 2f;
@@ -48,16 +48,17 @@ public abstract class Vehicle : MonoBehaviour
     {
         CalcSteeringForces();
         UpdatePosition();
-        BounceVehicleAroundCamera();
+       // BounceVehicleAroundCamera();
         SetTransform();
-       // FindNewPosition();
+
+
     }
     private void UpdatePosition()
     {
 
         velocity += acceleration * Time.deltaTime;
 
-        
+        //dont worry about the y axis, just focused on xz plane
         velocity.y = 0;
 
         vehiclePosition += velocity * Time.deltaTime;
@@ -143,12 +144,12 @@ public abstract class Vehicle : MonoBehaviour
         return Flee(targetVehicle.Position);
     }
 
-    public Vector3 Pursue(Vehicle targetVehicle, float seconds = 2f)
+    public Vector3 Pursue(Vehicle targetVehicle, float seconds = 1f)
     {
         return Seek(targetVehicle.GetFuturePosition(seconds));
     }
 
-    public Vector3 Evade(Vehicle targetVehicle, float seconds = 2f)
+    public Vector3 Evade(Vehicle targetVehicle, float seconds = 1f)
     {
         return Flee(targetVehicle.GetFuturePosition(seconds));
     }
@@ -176,15 +177,18 @@ public abstract class Vehicle : MonoBehaviour
             velocity.z *= -1f;
         }
     }
-  //  public void FindNewPosition()
+    //public void FindNewPoisition()
     //{
-     //   vehiclePosition.x = Random.Range(worldBounds.min.x, worldBounds.max.x);
-     //   vehiclePosition.z = Random.Range(worldBounds.min.z, worldBounds.max.z);
-      //  vehiclePosition.y = 0;
+    //    vehiclePosition.x = Random.Range(worldBounds.min.x, worldBounds.max.x);
+    //    vehiclePosition.z = Random.Range(worldBounds.min.z, worldBounds.max.z);
+    //    vehiclePosition.y = 0;
 
-      //  transform.position = vehiclePosition;
-   // }
+    //    transform.position = vehiclePosition;
+    //}
 
+    private void ObstacleAvoidance()
+    {
 
+    }
 }
 
